@@ -2,9 +2,8 @@
 
 # Import packages and modules
 
-import re
 import time
-from pathlib import Path
+from importlib.metadata import version
 
 from rich.align import Align
 from rich.console import Console
@@ -13,21 +12,18 @@ from rich.text import Text
 
 console = Console()
 
-# Define literals
-ROOT = Path(__file__).parent.parent.parent
-
 # Define helper functions
 def get_version() -> str:
     """
-    Function aimed at retrieving the CLI version from TOML file.
+    Function aimed at retrieving the CLI version from installed package metadata.
 
     :return: latest version of the CLI
     :rtype: str
     """
-    with open(ROOT / "pyproject.toml") as file:
-        toml = file.read()
-    pattern = r'version\s*=\s*"([^"]*\.\d+\.\d+)"'
-    return re.findall(pattern, toml)[0]
+    try:
+        return version("tidy-cli")
+    except Exception:
+        return "unknown"
 
 
 def show_ascii_art() -> None:
