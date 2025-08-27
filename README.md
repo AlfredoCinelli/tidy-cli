@@ -1,11 +1,34 @@
-# Tidy CLI
+<div align="center">
+  <h1>🧹 Tidy CLI ✨</h1>
+  <p><em>Keep your code clean and robust!</em></p>
+</div>
 
-[![PyPI Latest Release](https://img.shields.io/pypi/v/tidy-cli.svg)](https://pypi.org/project/tidy-cli/)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/tidy-cli.svg)](https://pypi.org/project/tidy-cli/)
-[![Python Versions](https://img.shields.io/pypi/pyversions/tidy-cli.svg)](https://pypi.org/project/tidy-cli/)
-[![License - MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AlfredoCinelli/tidy-cli/blob/main/LICENSE)
+<div align="center">
 
-> A streamlined CLI tool that unifies Python development workflows with integrated linting, formatting, and testing capabilities.
+[![Python Versions](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)](https://www.python.org)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AlfredoCinelli/tidy-cli)
+[![PyPI Latest Release](https://img.shields.io/badge/pypi-3775A9?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/tidy-cli/)
+[![License - MIT](https://img.shields.io/badge/MIT-black?style=for-the-badge)](https://github.com/AlfredoCinelli/tidy-cli/blob/main/LICENSE)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:alfredocinelli96@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/alfredocinelli/)
+
+---
+
+</div>
+
+<div align="center">
+  <p><em>Platforms</em></p>
+</div>
+
+<div align="center">
+
+[![Mac OS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white)]()
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)]()
+[![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)]()
+
+</div>
+
+---
 
 **Tidy CLI** simplifies your development process by combining essential tools like ruff, mypy, pydoclint, and pytest into a single, easy-to-use command-line interface. Perfect for maintaining code quality and running tests across Python projects of any size.
 
@@ -21,14 +44,20 @@
 
 ## 🚀 Installation
 
-### From PyPI (Recommended)
+### With pip
 
 ```bash
 # Using pip
 pip install tidy-cli
+```
 
-# Using uv (faster)
+### With uv (recommended)
+
+```bash
 uv pip install tidy-cli
+```
+```bash
+uv add tidy-cli
 ```
 
 ### Requirements
@@ -38,27 +67,47 @@ uv pip install tidy-cli
 
 ## 🏃 Quick Start
 
-### 1. Initialize Your Project
+### 1. Get a Feeling
+
+```bash
+# See what you are dealing with
+tidy-cli
+```
+
+```bash
+# Deep dive on what you are dealing with
+tidy-cli --help
+```
+
+```bash
+# Install auto-completion for easier usage
+tidy-cli --install-completion
+```
 
 ```bash
 # Set up tidy-cli for your project
 tidy-cli init
 ```
+The settings are about:
+- The Pytest folder path, just type `.` if no `chdir` is made when running tests.
+- The location of the `pyproject.toml` file relative to the Pytest folder path.
+- The default path to lint if no other path is passed (e.g., `src` if one wants to lint the entire `src` folder as default).
+- The path to the `pyproject.toml` relative to the `cwd` when running the `lint` commands.
 
 ### 2. Run Code Quality Checks
 
 ```bash
-# Lint your entire project
+# Lint your entire project (i.e., on the default lint path)
 tidy-cli lint run
 
-# Auto-fix issues
+# Auto-fix (fixable) issues
 tidy-cli lint run --fix
 ```
 
 ### 3. Run Tests
 
 ```bash
-# Run tests with coverage
+# Run all tests with coverage
 tidy-cli pytest run
 ```
 
@@ -66,17 +115,17 @@ That's it! Tidy CLI will handle the rest.
 
 ## 📖 Usage Guide
 
-### Code Quality & Linting
+### Code Quality & Linting Commands
 
 ```bash
 # Run all linters (ruff, mypy, pydoclint)
 tidy-cli lint run
 
-# Target specific files or directories
+# Target specific files or directories (relative to the default path/folder)
 tidy-cli lint run src/my_module
-tidy-cli lint run src/my_module/file.py
+tidy-cli lint run my_module/file.py # if src has been chosen as default path/folder
 
-# Interactive mode - review each issue
+# Interactive mode (i.e., you are prompted if to run a specific linter/formatter/checker)
 tidy-cli lint run --interactive
 
 # Auto-fix issues where possible
@@ -87,7 +136,7 @@ tidy-cli lint run --skip-mypy
 tidy-cli lint run --skip-pydoclint
 ```
 
-### Testing
+### Testing Commands
 
 ```bash
 # Run all tests with coverage
@@ -96,11 +145,11 @@ tidy-cli pytest run
 # Run specific test files
 tidy-cli pytest run tests/test_example.py
 
-# Show detailed test output on a path
+# Show detailed test output on a path (logs can be displayed only on path runs)
 tidy-cli pytest run tests/test_example.py --logs
 ```
 
-### Configuration
+### CLI Configuration
 
 ```bash
 # Initialize settings for all tools
