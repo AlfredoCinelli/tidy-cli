@@ -7,7 +7,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tidy-cli"
-version = "0.1.0"
+version = "0.1.1"
 description = "CLI tool for managing linting, formatting and testing"
 readme = "README.md"
 license = {text = "MIT"}
