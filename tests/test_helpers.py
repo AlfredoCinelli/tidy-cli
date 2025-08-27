@@ -1,7 +1,6 @@
 """Tests for the main tidy_cli helpers module."""
 
-from pathlib import Path
-from unittest.mock import mock_open, patch
+from unittest.mock import patch
 
 import pytest
 
@@ -9,53 +8,31 @@ from tidy_cli.helpers import get_version, show_ascii_art
 
 
 def test_get_version_success():
-    """Test get_version with valid pyproject.toml."""
-    mock_toml_content = '''
-[project]
-name = "test-project"
-version = "1.2.3"
-description = "Test project"
-'''
-    
-    with patch("builtins.open", mock_open(read_data=mock_toml_content)):
+    """Test get_version with valid package metadata."""
+    with patch("tidy_cli.helpers.version", return_value="1.2.3"):
         result = get_version()
         assert result == "1.2.3"
 
 
 def test_get_version_different_format():
     """Test get_version with different version format."""
-    mock_toml_content = '''
-[build-system]
-requires = ["hatchling"]
-
-[project]
-version = "0.5.10"
-name = "another-project"
-'''
-    
-    with patch("builtins.open", mock_open(read_data=mock_toml_content)):
+    with patch("tidy_cli.helpers.version", return_value="0.5.10"):
         result = get_version()
         assert result == "0.5.10"
 
 
-def test_get_version_no_match():
-    """Test get_version when no version pattern is found."""
-    mock_toml_content = '''
-[project]
-name = "test-project"
-description = "Test project without version"
-'''
-    
-    with patch("builtins.open", mock_open(read_data=mock_toml_content)):
-        with pytest.raises(IndexError):
-            get_version()
+def test_get_version_package_not_found():
+    """Test get_version when package is not found."""
+    with patch("tidy_cli.helpers.version", side_effect=Exception("Package not found")):
+        result = get_version()
+        assert result == "unknown"
 
 
-def test_get_version_file_not_found():
-    """Test get_version when pyproject.toml file doesn't exist."""
-    with patch("builtins.open", side_effect=FileNotFoundError("File not found")):
-        with pytest.raises(FileNotFoundError):
-            get_version()
+def test_get_version_metadata_error():
+    """Test get_version when metadata reading fails."""
+    with patch("tidy_cli.helpers.version", side_effect=ImportError("Metadata error")):
+        result = get_version()
+        assert result == "unknown"
 
 
 def test_show_ascii_art():
