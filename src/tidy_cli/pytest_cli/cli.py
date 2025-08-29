@@ -68,7 +68,7 @@ def run(
     if default_dir.exists() is False:
         console.print(f"❌ Default directory not found: [bold]{default_dir}[/bold]", style="red")
         raise typer.Exit(1)
-    test_path = default_dir / path # type: ignore
+    test_path = default_dir / path  # type: ignore
     # Test for the existence of the path to test when provided
     if (path) and (test_path.exists() is False):
         console.print(f"❌ Test path not found: [bold]{path}[/bold]", style="red")
@@ -99,7 +99,9 @@ def run(
             if result.returncode == 0:
                 # Print coverage for success tests
                 console.print("📊 Displaying [bold]coverage report[/bold]...", style="white")
+                console.print("\n")
                 subprocess.run(["coverage", "report", "-m"])
+                console.print("\n")
                 console.print("✅ Tests and coverage completed [bold]successfully[/bold]", style="green")
             else:
                 console.print("❌ Some tests [bold]failed[/bold]", style="red")

@@ -12,6 +12,7 @@ from rich.text import Text
 
 console = Console()
 
+
 # Define helper functions
 def get_version() -> str:
     """
@@ -58,8 +59,8 @@ def show_ascii_art() -> None:
 
     # Bottom decoration
     console.print()
-    decoration = "▀▄▀▄▀▄ ✨ PRODUCTIVE COMMAND LINE INTERFACE ✨ ▄▀▄▀▄▀"
-    console.print(Align.center(Text(decoration, style="bright_white"))) # dim
+    decoration = "▀▄▀▄▀▄ ✨ CLEAN CODE COMMAND LINE INTERFACE ✨ ▄▀▄▀▄▀"
+    console.print(Align.center(Text(decoration, style="bright_white")))  # dim
     time.sleep(0.2)
 
     # Retro panel with system info style

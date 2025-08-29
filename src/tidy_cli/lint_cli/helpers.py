@@ -34,17 +34,17 @@ def run_command(
         result = subprocess.run(command, capture_output=True, text=True)
         if result.returncode == 0:
             console.print(f"✅ {description} completed successfully")
-            console.print(result.stdout, style="white") if result.stdout else console.print("")
+            console.print(result.stdout, style="white", markup=False) if result.stdout else console.print("")
             return True
         else:
             console.print(f"❌ {description} failed", style="red")
             if result.stdout:
-                console.print(result.stdout, style="red")
+                console.print(result.stdout, style="red", markup=False)
             if result.stderr:
-                console.print(result.stderr, style="red")
+                console.print(result.stderr, style="red", markup=False)
             return False
     except Exception as e:
-        console.print(f"❌ Error running {description}: {e}", style="red")
+        console.print(f"❌ Error running {description}: {e}", style="red", markup=False)
         return False
 
 

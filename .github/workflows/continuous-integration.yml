@@ -1,0 +1,132 @@
+# Continuous Integration Workflow
+
+# Name of the Pipeline
+name: CI-PIPELINE
+
+# Name of each CI run (with PR title and PR number)
+run-name: "🧪 Tests & Linting | ${{ github.event.pull_request.title }} (PR #${{ github.event.number }})"
+
+# Trigger event
+on:
+  pull_request: # event types
+    types:
+      - opened # opening a PR triggers CI
+      - edited # editing an opened PR triggers CI (e.g., PR title, description, etc.)
+      - synchronize # sync an opened PR triggers CI (i.e., new commits to PR branch)
+    branches: # target branchs
+      - main # CI triggered on PR opened or edited on main branch
+
+# Jobs definition
+jobs:
+  run-test:
+    runs-on: ubuntu-latest # VM type
+
+    steps:
+    # Checkout code to download repository into the Runner
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Install uv via pinned version
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+      with:
+        version: "0.8.14"
+
+  # Install Python via Project toml version
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version-file: "pyproject.toml"
+
+  # Install Project dependencies with dev group
+    - name: Install the Project
+      run: |
+        uv sync --group dev
+        uv pip install -e .
+
+    - name: Run Unit-Tests with Coverage Report
+      run: uv run coverage run --rcfile=./pyproject.toml -m pytest --disable-pytest-warnings && uv run coverage report && rm -f .coverage
+
+  run-linters:
+    runs-on: ubuntu-latest # VM type
+
+    steps:
+    # Checkout code to download repository into the Runner
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Install uv via pinned version
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+      with:
+        version: "0.8.14"
+
+  # Install Python via Project toml version
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version-file: "pyproject.toml"
+
+  # Install Project dependencies with dev group
+    - name: Install the Dependencies
+      run: uv sync --group dev
+
+    - name: Run Linters via Ruff
+      run: uv run ruff check src/tidy_cli --fix
+
+    - name: Run Formatters via Ruff
+      run: uv run ruff format src/tidy_cli
+
+    - name: Run Type Checking via MyPy
+      run: uv run mypy src/tidy_cli --pretty
+
+  version-check:
+    runs-on: ubuntu-latest  # VM type
+    if: github.event_name == 'pull_request' # trigger job only on PR event
+    
+    steps:
+    # Checkout code to download repository into the Runner
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Install uv via pinned version
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+      with:
+        version: "0.8.14"
+
+  # Install Python via Project toml version
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version-file: "pyproject.toml"
+
+  # Install Project dependencies with dev group
+    - name: Install the Dependencies
+      run: uv sync --group dev
+
+  # Check that the version has been properly bumped
+    - name: Check Version Bump
+      run: |
+        # Get latest version from pyproject.toml on current branch
+        CURRENT_VERSION=$(uv run python -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['project']['version'])")
+        
+        # Get latest version from main branch
+        git fetch origin main
+        MAIN_VERSION=$(git show origin/main:pyproject.toml | uv run python -c "import tomllib, sys; print(tomllib.load(sys.stdin.buffer)['project']['version'])")
+        
+        echo "📤 Current version: '$CURRENT_VERSION'"
+        echo "📩 Main version: '$MAIN_VERSION'"
+        
+        if [ "$CURRENT_VERSION" = "$MAIN_VERSION" ]; then
+          echo "❌ Version not bumped! Please update the version in 'pyproject.toml'"
+          exit 1
+        else
+          echo "✅ Version bumped from '$MAIN_VERSION' to '$CURRENT_VERSION'"
+        fi

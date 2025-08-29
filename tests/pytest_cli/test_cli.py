@@ -76,6 +76,7 @@ def test_run_specific_path_success(runner):
         patch("subprocess.run") as mock_run,
         patch("rich.console.Console.print") as mock_print,
         patch("tidy_cli.pytest_cli.cli.cleanup_test_cache") as mock_cleanup,
+        patch("tidy_cli.pytest_cli.cli.get_pytest_default_path", return_value=Path(".")),
     ):
         # Mock successful test run
         mock_run.return_value = MagicMock(returncode=0)
@@ -85,7 +86,7 @@ def test_run_specific_path_success(runner):
         assert result.exit_code == 0
         mock_chdir.assert_called()
         mock_run.assert_called_once()
-        mock_print.assert_any_call("🧪 Running tests for: [bold]src/tests/test_example.py[/bold]", style="white")
+        mock_print.assert_any_call("🧪 Running tests for: [bold]tests/test_example.py[/bold]", style="white")
         mock_print.assert_any_call("🔇 [bold]Not showing[/bold] logs...", style="white")
         mock_print.assert_any_call("✅ Tests completed [bold]successfully[/bold]", style="green")
         mock_cleanup.assert_called_once()
@@ -144,6 +145,7 @@ def test_run_all_tests_success(runner):
         patch("pathlib.Path.unlink") as mock_unlink,
         patch("rich.console.Console.print") as mock_print,
         patch("tidy_cli.pytest_cli.cli.cleanup_test_cache") as mock_cleanup,
+        patch("tidy_cli.pytest_cli.cli.get_pytest_default_path", return_value=Path(".")),
     ):
         # Create a mock that returns success for both calls
         mock_process = MagicMock(returncode=0)
@@ -169,7 +171,7 @@ def test_run_all_tests_success(runner):
         assert "report" in second_call_args
 
         # Verify console output
-        mock_print.assert_any_call("🧪 Running [bold]all[/bold] tests with [bold]coverage[/bold] for: [bold]src[/bold]", style="white")
+        mock_print.assert_any_call("🧪 Running [bold]all[/bold] tests with [bold]coverage[/bold] for: [bold].[/bold]", style="white")
         mock_print.assert_any_call("📊 Displaying [bold]coverage report[/bold]...", style="white")
         mock_print.assert_any_call("✅ Tests and coverage completed [bold]successfully[/bold]", style="green")
 
