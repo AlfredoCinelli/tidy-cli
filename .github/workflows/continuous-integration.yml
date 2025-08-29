@@ -1,7 +1,12 @@
+# Continuous Integration Workflow
+
+# Name of the Pipeline
 name: CI-PIPELINE
 
-run-name: "🧪 Tests & Linting - PR #${{ github.event.number }}"
+# Name of each CI run (with PR title and PR number)
+run-name: "🧪 Tests & Linting | ${{ github.event.pull_request.title }} (PR #${{ github.event.number }})"
 
+# Trigger event
 on:
   pull_request: # event types
     types:
@@ -11,6 +16,7 @@ on:
     branches: # target branchs
       - main # CI triggered on PR opened or edited on main branch
 
+# Jobs definition
 jobs:
   run-test:
     runs-on: ubuntu-latest # VM type

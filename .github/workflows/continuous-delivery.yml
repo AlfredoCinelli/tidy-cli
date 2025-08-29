@@ -1,0 +1,51 @@
+# Continuous Delivery Workflow
+
+# Name of the Pipeline
+name: CD-PIPELINE
+
+# Name of each CD run (with commit sha)
+run-name: "🚀 Deploy to PyPI | ${{ github.sha }}"
+
+# Trigger event
+on:
+  push: # event type (push on main is allowed only upon PR merging, due to branch protection rulset)
+    branches:
+    - main
+
+# Jobs definition
+jobs:
+  package-build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout code to download repository into the Runner
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    # Install uv via pinned version
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+      with:
+        version: "0.8.14"
+
+    # Install Python via Project toml version
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version-file: "pyproject.toml"
+    
+      # Install Project dependencies with dev group
+    - name: Install the Dependencies
+      run: uv sync --group dev
+
+    # Run build with dist check
+    - name: Build Package Distribution
+      run: bash scripts/build.sh
+
+    - name: Publish to PyPI
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+      run: uv run twine upload dist/*
