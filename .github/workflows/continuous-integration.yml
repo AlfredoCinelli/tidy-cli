@@ -5,6 +5,7 @@ on:
     types:
       - opened # opening a PR triggers CI
       - edited # editing an opened PR triggers CI
+      - synchronize
     branches: # target branchs
       - main # CI triggered on PR opened or edited on main branch
 
