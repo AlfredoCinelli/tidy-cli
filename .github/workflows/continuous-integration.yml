@@ -1,5 +1,7 @@
 name: CI-PIPELINE
 
+run-name: "🧪 Tests & Linting - PR #${{ github.event.number }}"
+
 on:
   pull_request: # event types
     types:
@@ -64,7 +66,7 @@ jobs:
         python-version-file: "pyproject.toml"
 
   # Install Project dependencies with dev group
-    - name: Install the Project
+    - name: Install the Dependencies
       run: uv sync --group dev
 
     - name: Run Linters via Ruff
@@ -100,7 +102,7 @@ jobs:
         python-version-file: "pyproject.toml"
 
   # Install Project dependencies with dev group
-    - name: Install the Project
+    - name: Install the Dependencies
       run: uv sync --group dev
 
   # Check that the version has been properly bumped
