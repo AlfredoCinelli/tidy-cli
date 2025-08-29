@@ -12,4 +12,4 @@ fi
 
 uv build . # create distribution files
 
-twine check dist/* # check if the distribution files are valid (for publishing)
+uv run twine check dist/* # check if the distribution files are valid (for publishing)
