@@ -4,8 +4,8 @@ on:
   pull_request: # event types
     types:
       - opened # opening a PR triggers CI
-      - edited # editing an opened PR triggers CI
-      - synchronize
+      - edited # editing an opened PR triggers CI (e.g., PR title, description, etc.)
+      - synchronize # sync an opened PR triggers CI (i.e., new commits to PR branch)
     branches: # target branchs
       - main # CI triggered on PR opened or edited on main branch
 
@@ -113,12 +113,12 @@ jobs:
         git fetch origin main
         MAIN_VERSION=$(git show origin/main:pyproject.toml | uv run python -c "import tomllib, sys; print(tomllib.load(sys.stdin.buffer)['project']['version'])")
         
-        echo "📤 Current version: $CURRENT_VERSION"
-        echo "📩 Main version: $MAIN_VERSION"
+        echo "📤 Current version: '$CURRENT_VERSION'"
+        echo "📩 Main version: '$MAIN_VERSION'"
         
         if [ "$CURRENT_VERSION" = "$MAIN_VERSION" ]; then
-          echo "❌ Version not bumped! Please update the version in pyproject.toml"
+          echo "❌ Version not bumped! Please update the version in 'pyproject.toml'"
           exit 1
         else
-          echo "✅ Version bumped from $MAIN_VERSION to $CURRENT_VERSION"
+          echo "✅ Version bumped from '$MAIN_VERSION' to '$CURRENT_VERSION'"
         fi
