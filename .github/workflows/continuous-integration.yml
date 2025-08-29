@@ -40,6 +40,32 @@ jobs:
     - name: Run Unit-Tests with Coverage Report
       run: uv run coverage run --rcfile=./pyproject.toml -m pytest --disable-pytest-warnings && uv run coverage report && rm -f .coverage
 
+  run-linters:
+    runs-on: ubuntu-latest # VM type
+
+    steps:
+    # Checkout code to download repository into the Runner
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Install uv via pinned version
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+      with:
+        version: "0.8.14"
+
+  # Install Python via Project toml version
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version-file: "pyproject.toml"
+
+  # Install Project dependencies with dev group
+    - name: Install the Project
+      run: uv sync --group dev
+
     - name: Run Linters via Ruff
       run: uv run ruff check src/tidy_cli --fix
 
