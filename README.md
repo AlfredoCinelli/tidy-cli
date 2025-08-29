@@ -165,7 +165,7 @@ tidy-cli version
 
 ## ⚙️ Configuration
 
-Tidy CLI stores settings in `local/cli_settings.json` with sensible defaults:
+Tidy CLI stores settings in `local/tidy_cli_settings.json` with sensible defaults:
 
 ```json
 {
