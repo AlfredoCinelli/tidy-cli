@@ -124,6 +124,7 @@ def run(
         raise typer.Exit(1)
 
     console.print(f"🔍 Running linters on: [bold]{lint_path}[/bold]", style="white")
+    console.print("\n")
 
     # Interactive mode
     if interactive is True:
@@ -154,7 +155,7 @@ def run(
 
     success_count = sum(results)
     total_count = len(results)
-
+    console.print("\n")
     if success_count == total_count:
         console.print(f"🎉 All [bold green]{total_count}[/bold green] linting tools completed [bold]successfully[/bold]", style="green")
     else:
