@@ -31,7 +31,7 @@ def test_run_command_success():
         assert result is True
         mock_print.assert_any_call("🔧 Test command...")
         mock_print.assert_any_call("✅ Test command completed successfully")
-        mock_print.assert_any_call("Success output", style="white")
+        mock_print.assert_any_call("Success output", style="white", markup=False)
 
 
 def test_run_command_failure():
@@ -51,8 +51,8 @@ def test_run_command_failure():
         assert result is False
         mock_print.assert_any_call("🔧 Test command...")
         mock_print.assert_any_call("❌ Test command failed", style="red")
-        mock_print.assert_any_call("Error output", style="red")
-        mock_print.assert_any_call("Error message", style="red")
+        mock_print.assert_any_call("Error output", style="red", markup=False)
+        mock_print.assert_any_call("Error message", style="red", markup=False)
 
 
 def test_run_command_exception():
@@ -63,7 +63,7 @@ def test_run_command_exception():
         result = run_command(["test"], "Test command")
         
         assert result is False
-        mock_print.assert_any_call("❌ Error running Test command: Test error", style="red")
+        mock_print.assert_any_call("❌ Error running Test command: Test error", style="red", markup=False)
 
 
 def test_run_command_no_output():
