@@ -76,6 +76,7 @@ def test_run_specific_path_success(runner):
         patch("subprocess.run") as mock_run,
         patch("rich.console.Console.print") as mock_print,
         patch("tidy_cli.pytest_cli.cli.cleanup_test_cache") as mock_cleanup,
+        patch("tidy_cli.pytest_cli.cli.get_pytest_default_path", return_value=Path(".")),
     ):
         # Mock successful test run
         mock_run.return_value = MagicMock(returncode=0)
@@ -144,6 +145,7 @@ def test_run_all_tests_success(runner):
         patch("pathlib.Path.unlink") as mock_unlink,
         patch("rich.console.Console.print") as mock_print,
         patch("tidy_cli.pytest_cli.cli.cleanup_test_cache") as mock_cleanup,
+        patch("tidy_cli.pytest_cli.cli.get_pytest_default_path", return_value=Path(".")),
     ):
         # Create a mock that returns success for both calls
         mock_process = MagicMock(returncode=0)
