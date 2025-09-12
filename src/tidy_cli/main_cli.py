@@ -30,8 +30,8 @@ console = Console()
 DESC = """
     🛰️  [bold]CLI[/bold] tool for [italic]development tasks[/italic]: [bold]linting[/bold] and [bold]unit-testing[/bold].
 
-    ▪ [code]tidy-cli lint[/code] allows to run linters battery on entire [italic]src[/italic] folder or specific path files 🧼
-    ▪ [code]tidy-cli pytest[/code] allows to run pytest on entire [italic]tests[/italic] folder or specific path with or without logs 🧪
+    ▪ [code]tidy-cli lint[/code] allows to run linters battery on entire [italic]default[/italic] folder or specific path files 🧼
+    ▪ [code]tidy-cli pytest[/code] allows to run pytest on entire [italic]tests[/italic] folder or specific path with logs and with any Pytest extra options 🧪
     """
 
 # Define main CLI program
