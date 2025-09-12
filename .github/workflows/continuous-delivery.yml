@@ -17,6 +17,7 @@ jobs:
   # Build package and publish first (fail fast approach with atomic deployment)
   package-build-and-publish:
     runs-on: ubuntu-latest
+    name: Package Building and Publishing
 
     steps:
     # Checkout code to download repository into the Runner
@@ -54,6 +55,7 @@ jobs:
   # Deploy documentation to GitHub Pages
   deploy-docs:
     runs-on: ubuntu-latest
+    name: Deploy MKdocs
     needs: package-build-and-publish
     permissions:
       contents: write
@@ -83,6 +85,7 @@ jobs:
   # Create GitHub release with tag based on CHANGELOG latest content
   create-release:
     runs-on: ubuntu-latest
+    name: Create Git Tag and GitHub Release
     needs: [package-build-and-publish, deploy-docs]
     permissions:
       contents: write

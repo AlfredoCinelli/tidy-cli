@@ -20,7 +20,7 @@ on:
 jobs:
   run-test-matrix:
     runs-on: ${{ matrix.os }} # allows different test scenarios
-    name: Run test on Python ${{ matrix.python-version }} for ${{ matrix.os }} # specify name with OS and Python version
+    name: Run Test on Python ${{ matrix.python-version }} for ${{ matrix.os }} # specify name with OS and Python version
     strategy:
       fail-fast: false # combinations run independently of others success or failure
       matrix:
@@ -40,11 +40,11 @@ jobs:
       with:
         version: "0.8.14"
 
-  # Install Python via Project toml version
-    - name: Set up Python
+    # Install Python via matrix version
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
-        python-version-file: "pyproject.toml"
+        python-version: ${{ matrix.python-version }} # Python version from matrix
 
   # Install Project dependencies with dev group
     - name: Install the Project
@@ -57,6 +57,7 @@ jobs:
 
   run-linters:
     runs-on: ubuntu-latest # VM type
+    name: Run Linters
 
     steps:
     # Checkout code to download repository into the Runner
@@ -92,6 +93,7 @@ jobs:
 
   version-check:
     runs-on: ubuntu-latest  # VM type
+    name: Version Check
     
     steps:
     # Checkout code to download repository into the Runner
