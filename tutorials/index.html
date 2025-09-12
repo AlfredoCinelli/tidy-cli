@@ -456,28 +456,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#complete-workflow-tutorial" class="md-nav__link">
+  <a href="#complete-workflow" class="md-nav__link">
     <span class="md-ellipsis">
-      Complete Workflow Tutorial
+      Complete Workflow
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Complete Workflow Tutorial">
+    <nav class="md-nav" aria-label="Complete Workflow">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#setting-up-a-new-python-project" class="md-nav__link">
+  <a href="#new-project-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      Setting Up a New Python Project
+      New Project Setup
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#working-with-existing-projects" class="md-nav__link">
+  <a href="#existing-project" class="md-nav__link">
     <span class="md-ellipsis">
-      Working with Existing Projects
+      Existing Project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime-configuration-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runtime Configuration Override
     </span>
   </a>
   
@@ -634,79 +643,23 @@ uv<span class="w"> </span>add<span class="w"> </span>tidy-cli
 <p>Execute your test suite with coverage:</p>
 <div class="highlight"><pre><span></span><code>tidy-cli<span class="w"> </span>pytest<span class="w"> </span>run
 </code></pre></div>
-<h2 id="complete-workflow-tutorial"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 14h-2v2h-6v-3h2v-2h-2V6a2 2 0 0 0-2-2H4V2H2v8h2V8h6v3H8v2h2v5a2 2 0 0 0 2 2h8v2h2"/></svg></span> Complete Workflow Tutorial</h2>
-<h3 id="setting-up-a-new-python-project"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 13h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg></span> Setting Up a New Python Project</h3>
-<ol>
-<li>
-<p><strong>Create project structure</strong>:
-   <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>my-project<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>my-project
+<h2 id="complete-workflow"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 14h-2v2h-6v-3h2v-2h-2V6a2 2 0 0 0-2-2H4V2H2v8h2V8h6v3H8v2h2v5a2 2 0 0 0 2 2h8v2h2"/></svg></span> Complete Workflow</h2>
+<h3 id="new-project-setup">New Project Setup</h3>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>my-project<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>my-project
 mkdir<span class="w"> </span>src<span class="w"> </span>tests
-touch<span class="w"> </span>src/__init__.py<span class="w"> </span>tests/__init__.py
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Initialize Tidy CLI</strong>:
-   <div class="highlight"><pre><span></span><code>tidy-cli<span class="w"> </span>init
-</code></pre></div></p>
-</li>
-<li>Pytest folder: <code>tests</code></li>
-<li>Pyproject.toml: <code>pyproject.toml</code></li>
-<li>Default lint path: <code>src</code></li>
-<li>
-<p>Config path: <code>pyproject.toml</code></p>
-</li>
-<li>
-<p><strong>Create basic configuration</strong>:
-   <div class="highlight"><pre><span></span><code><span class="c1"># pyproject.toml</span>
-<span class="k">[tool.ruff]</span>
-<span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">88</span>
-
-<span class="k">[tool.mypy]</span>
-<span class="n">python_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.10&quot;</span>
-<span class="n">ignore_missing_imports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-
-<span class="k">[tool.pydoclint]</span>
-<span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sphinx&quot;</span>
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Run quality checks</strong>:
-   <div class="highlight"><pre><span></span><code>tidy-cli<span class="w"> </span>lint<span class="w"> </span>run<span class="w"> </span>--fix
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Run tests</strong>:
-   <div class="highlight"><pre><span></span><code>tidy-cli<span class="w"> </span>pytest<span class="w"> </span>run
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="working-with-existing-projects"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 20H4a2 2 0 0 1-2-2V6c0-1.11.89-2 2-2h6l2 2h7a2 2 0 0 1 2 2H4v10l2.14-8h17.07l-2.28 8.5c-.23.87-1.01 1.5-1.93 1.5"/></svg></span> Working with Existing Projects</h3>
-<ol>
-<li>
-<p><strong>Navigate to project root</strong>:
-   <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/existing/project
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Initialize Tidy CLI</strong>:
-   <div class="highlight"><pre><span></span><code>tidy-cli<span class="w"> </span>init
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Check current code quality</strong>:
-   <div class="highlight"><pre><span></span><code>tidy-cli<span class="w"> </span>lint<span class="w"> </span>run
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Fix issues incrementally</strong>:
-   <div class="highlight"><pre><span></span><code><span class="c1"># Interactive mode - choose what to run</span>
-tidy-cli<span class="w"> </span>lint<span class="w"> </span>run<span class="w"> </span>--interactive
-
-<span class="c1"># Skip specific tools if needed</span>
-tidy-cli<span class="w"> </span>lint<span class="w"> </span>run<span class="w"> </span>--skip-mypy
-</code></pre></div></p>
-</li>
-</ol>
+tidy-cli<span class="w"> </span>init<span class="w">  </span><span class="c1"># Follow prompts</span>
+tidy-cli<span class="w"> </span>lint<span class="w"> </span>run<span class="w"> </span>--fix
+</code></pre></div>
+<h3 id="existing-project">Existing Project</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>existing-project
+tidy-cli<span class="w"> </span>init
+tidy-cli<span class="w"> </span>lint<span class="w"> </span>run<span class="w"> </span>--interactive<span class="w">  </span><span class="c1"># Review each tool</span>
+</code></pre></div>
+<h3 id="runtime-configuration-override">Runtime Configuration Override</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Override settings temporarily without changing saved configuration</span>
+tidy-cli<span class="w"> </span>lint<span class="w"> </span>run<span class="w"> </span>--default-dir<span class="w"> </span>backend/src
+tidy-cli<span class="w"> </span>pytest<span class="w"> </span>run<span class="w"> </span>--default-dir<span class="w"> </span>backend/tests<span class="w"> </span>--pyproject-path<span class="w"> </span>backend/pyproject.toml
+</code></pre></div>
 <h2 id="next-steps"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> Next Steps</h2>
 <ul>
 <li>Learn about <a href="../how-to-guides/">specific commands</a></li>

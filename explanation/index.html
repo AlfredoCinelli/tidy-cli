@@ -535,53 +535,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-selection-rationale" class="md-nav__link">
+  <a href="#tool-selection" class="md-nav__link">
     <span class="md-ellipsis">
-      Tool Selection Rationale
+      Tool Selection
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Tool Selection Rationale">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#why-ruff" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why Ruff?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-mypy" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why MyPy?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-pydoclint" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why Pydoclint?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-pytest" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why Pytest?
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -605,9 +563,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#material-settings-configuration-management" class="md-nav__link">
+  <a href="#configuration-management" class="md-nav__link">
     <span class="md-ellipsis">
-      :material-settings: Configuration Management
+      Configuration Management
     </span>
   </a>
   
@@ -628,110 +586,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#comparison-with-alternatives" class="md-nav__link">
+  <a href="#design-approach" class="md-nav__link">
     <span class="md-ellipsis">
-      Comparison with Alternatives
+      Design Approach
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Comparison with Alternatives">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vs-makescripts" class="md-nav__link">
-    <span class="md-ellipsis">
-      vs. Make/Scripts
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vs-pre-commit" class="md-nav__link">
-    <span class="md-ellipsis">
-      vs. Pre-commit
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vs-all-in-one-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      vs. All-in-One Tools
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-considerations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Performance Considerations
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Performance Considerations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#execution-speed" class="md-nav__link">
-    <span class="md-ellipsis">
-      Execution Speed
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#resource-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Resource Usage
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#future-directions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Future Directions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Future Directions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#extensibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      Extensibility
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#community" class="md-nav__link">
-    <span class="md-ellipsis">
-      Community
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -781,7 +640,8 @@
 <li>Setting up CI/CD pipelines with multiple tool calls</li>
 </ul>
 <h3 id="the-solution"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> The Solution</h3>
-<p>Tidy CLI unifies these essential tools under a single, intuitive interface. Instead of running:</p>
+<p>Tidy CLI unifies these essential tools under a single, intuitive interface.
+Instead of running:</p>
 <div class="highlight"><pre><span></span><code>ruff<span class="w"> </span>check<span class="w"> </span>src/<span class="w"> </span>--fix
 ruff<span class="w"> </span>format<span class="w"> </span>src/
 mypy<span class="w"> </span>src/
@@ -815,45 +675,21 @@ tidy-cli<span class="w"> </span>pytest<span class="w"> </span>run
 <li><strong>CI/CD pipelines</strong>: Consistent quality gates</li>
 <li><strong>IDE integration</strong>: Works with existing tool configurations</li>
 </ul>
-<h2 id="tool-selection-rationale"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.71 20.29-1.42 1.42a1 1 0 0 1-1.41 0L7 9.85A3.8 3.8 0 0 1 6 10a4 4 0 0 1-3.78-5.3l2.54 2.54.53-.53 1.42-1.42.53-.53L4.7 2.22A4 4 0 0 1 10 6a3.8 3.8 0 0 1-.15 1l11.86 11.88a1 1 0 0 1 0 1.41M2.29 18.88a1 1 0 0 0 0 1.41l1.42 1.42a1 1 0 0 0 1.41 0l5.47-5.46-2.83-2.83M20 2l-4 2v2l-2.17 2.17 2 2L18 8h2l2-4Z"/></svg></span> Tool Selection Rationale</h2>
-<h3 id="why-ruff"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 15H6l7-14v8h5l-7 14z"/></svg></span> Why Ruff?</h3>
-<p><strong>Ruff</strong> was chosen as the primary linter and formatter because:</p>
+<h2 id="tool-selection"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.71 20.29-1.42 1.42a1 1 0 0 1-1.41 0L7 9.85A3.8 3.8 0 0 1 6 10a4 4 0 0 1-3.78-5.3l2.54 2.54.53-.53 1.42-1.42.53-.53L4.7 2.22A4 4 0 0 1 10 6a3.8 3.8 0 0 1-.15 1l11.86 11.88a1 1 0 0 1 0 1.41M2.29 18.88a1 1 0 0 0 0 1.41l1.42 1.42a1 1 0 0 0 1.41 0l5.47-5.46-2.83-2.83M20 2l-4 2v2l-2.17 2.17 2 2L18 8h2l2-4Z"/></svg></span> Tool Selection</h2>
+<p>Tidy CLI integrates best-in-class Python tools:</p>
 <ul>
-<li><strong>Speed</strong>: 10-100x faster than traditional Python linters</li>
-<li><strong>Comprehensive</strong>: Combines functionality of multiple tools (flake8, isort, black)</li>
-<li><strong>Modern</strong>: Built with Rust for performance and reliability</li>
-<li><strong>Configurable</strong>: Extensive rule selection and customization</li>
+<li><strong>Ruff</strong>: Fast, comprehensive linting and formatting</li>
+<li><strong>MyPy</strong>: Industry-standard static type checking</li>
+<li><strong>Pydoclint</strong>: Docstring validation and consistency</li>
+<li><strong>Pytest</strong>: Flexible testing with coverage reporting</li>
 </ul>
-<h3 id="why-mypy"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m22.61 19-9.08-9.09c.93-2.34.47-5.1-1.44-7C9.79.61 6.21.4 3.66 2.26L7.5 6.11 6.08 7.5 2.25 3.69C.39 6.23.6 9.82 2.9 12.11c1.86 1.86 4.57 2.35 6.89 1.48l9.11 9.11c.39.39 1.02.39 1.41 0l2.3-2.3c.39-.4.39-1.01 0-1.4m-3 1.59-9.46-9.46c-.61.45-1.29.72-2 .82-1.36.2-2.79-.21-3.83-1.25C3.37 9.76 2.93 8.5 3 7.26l3.09 3.09 4.24-4.24L7.24 3c1.26-.05 2.49.39 3.44 1.33a4.47 4.47 0 0 1 1.24 3.96 4.35 4.35 0 0 1-.88 1.96l9.46 9.45z"/></svg></span> Why MyPy?</h3>
-<p><strong>MyPy</strong> remains the gold standard for Python static type checking:</p>
-<ul>
-<li><strong>Mature ecosystem</strong>: Extensive type stub library support</li>
-<li><strong>Gradual typing</strong>: Works with existing codebases</li>
-<li><strong>IDE integration</strong>: Excellent editor support</li>
-<li><strong>Community adoption</strong>: Widely used and trusted</li>
-</ul>
-<h3 id="why-pydoclint"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 17H7v-2h7m3-2H7v-2h10m0-2H7V7h10m2-4H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Why Pydoclint?</h3>
-<p><strong>Pydoclint</strong> ensures documentation quality:</p>
-<ul>
-<li><strong>Docstring validation</strong>: Checks parameter and return documentation</li>
-<li><strong>Style consistency</strong>: Supports multiple docstring conventions</li>
-<li><strong>Error detection</strong>: Finds mismatched signatures and documentation</li>
-<li><strong>Lightweight</strong>: Focused tool without feature bloat</li>
-</ul>
-<h3 id="why-pytest"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 2v2h1v14a4 4 0 0 0 4 4 4 4 0 0 0 4-4V4h1V2zm4 14c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1m2-4c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1m1-5h-4V4h4z"/></svg></span> Why Pytest?</h3>
-<p><strong>Pytest</strong> is the de facto standard for Python testing:</p>
-<ul>
-<li><strong>Powerful fixtures</strong>: Flexible test setup and teardown</li>
-<li><strong>Plugin ecosystem</strong>: Extensive third-party extensions</li>
-<li><strong>Coverage integration</strong>: Built-in support for coverage reporting</li>
-<li><strong>Readable output</strong>: Clear test results and failure reporting</li>
-</ul>
+<p>Each tool was selected for performance, reliability, and ecosystem adoption.</p>
 <h2 id="architecture-overview"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 16 7.36-5.73L21 9l-9-7-9 7 1.63 1.27M12 18.54l-7.38-5.73L3 14.07l9 7 9-7-1.63-1.27z"/></svg></span> Architecture Overview</h2>
 <h3 id="project-structure"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3h6v4H3zm12 7h6v4h-6zm0 7h6v4h-6zm-2-4H7v5h6v2H5V9h2v2h6z"/></svg></span> Project Structure</h3>
 <p>Tidy CLI expects a conventional Python project structure:</p>
 <div class="highlight"><pre><span></span><code>project/
 ├── src/           # Source code
-├── tests/         # Test files  
+│    └── tests/    # Test files  
 ├── local/         # Tidy CLI settings
 └── pyproject.toml # Tool configurations
 </code></pre></div>
@@ -863,7 +699,7 @@ tidy-cli<span class="w"> </span>pytest<span class="w"> </span>run
 <li><strong>Tool compatibility</strong>: Standard layout works with all integrated tools</li>
 <li><strong>Scalability</strong>: Structure scales from small scripts to large applications</li>
 </ul>
-<h3 id="material-settings-configuration-management">:material-settings: Configuration Management</h3>
+<h3 id="configuration-management"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m22.61 19-9.08-9.09c.93-2.34.47-5.1-1.44-7C9.79.61 6.21.4 3.66 2.26L7.5 6.11 6.08 7.5 2.25 3.69C.39 6.23.6 9.82 2.9 12.11c1.86 1.86 4.57 2.35 6.89 1.48l9.11 9.11c.39.39 1.02.39 1.41 0l2.3-2.3c.39-.4.39-1.01 0-1.4m-3 1.59-9.46-9.46c-.61.45-1.29.72-2 .82-1.36.2-2.79-.21-3.83-1.25C3.37 9.76 2.93 8.5 3 7.26l3.09 3.09 4.24-4.24L7.24 3c1.26-.05 2.49.39 3.44 1.33a4.47 4.47 0 0 1 1.24 3.96 4.35 4.35 0 0 1-.88 1.96l9.46 9.45z"/></svg></span> Configuration Management</h3>
 <p>Tidy CLI uses a two-tier configuration system:</p>
 <ol>
 <li><strong>Tidy CLI settings</strong> (<code>local/tidy_cli_settings.json</code>): Path and execution preferences</li>
@@ -883,68 +719,13 @@ tidy-cli<span class="w"> </span>pytest<span class="w"> </span>run
 <li><strong>Execute tools</strong>: Run tools in logical order</li>
 <li><strong>Aggregate results</strong>: Combine outputs into unified report</li>
 </ol>
-<h2 id="comparison-with-alternatives"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3h-5v2h5v13l-5-6v9h5a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-9 15H5l5-6m0-9H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h5v2h2V1h-2z"/></svg></span> Comparison with Alternatives</h2>
-<h3 id="vs-makescripts"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 19.63 13.43 8.2l-.71-.7 1.42-1.43L12 3.89c1.2-1.19 3.09-1.19 4.27 0l3.6 3.61-1.42 1.41h2.84l.71.71-3.55 3.59-.71-.71V9.62l-1.47 1.42-.71-.71L4.13 21.76z"/></svg></span> vs. Make/Scripts</h3>
-<p><strong>Traditional approach:</strong>
-<div class="highlight"><pre><span></span><code>make<span class="w"> </span>lint
-make<span class="w"> </span><span class="nb">test</span>
-make<span class="w"> </span>format
-</code></pre></div></p>
-<p><strong>Tidy CLI advantages:</strong>
-- No Makefile maintenance
-- Cross-platform compatibility
-- Consistent interface
-- Built-in tool integration</p>
-<h3 id="vs-pre-commit"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.12 5h13.75l-.94-1h-12zm15.42.23c.29.34.46.77.46 1.27V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6.5c0-.5.17-.93.46-1.27l1.38-1.68C5.12 3.21 5.53 3 6 3h12c.47 0 .88.21 1.15.55zM6 18h6v-3H6z"/></svg></span> vs. Pre-commit</h3>
-<p><strong>Pre-commit</strong> is complementary, not competitive:</p>
+<h2 id="design-approach"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3h-5v2h5v13l-5-6v9h5a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-9 15H5l5-6m0-9H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h5v2h2V1h-2z"/></svg></span> Design Approach</h2>
+<p>Tidy CLI complements existing tools rather than replacing them:</p>
 <ul>
-<li><strong>Pre-commit</strong>: Git hook automation</li>
-<li><strong>Tidy CLI</strong>: Development workflow integration</li>
+<li><strong>vs. Make/Scripts</strong>: Cross-platform, no maintenance overhead</li>
+<li><strong>vs. Pre-commit</strong>: Use together for complete workflow coverage</li>
+<li><strong>vs. All-in-One</strong>: Best-of-breed tools with unified interface</li>
 </ul>
-<p>Use both together:
-<div class="highlight"><pre><span></span><code><span class="c1"># .pre-commit-config.yaml</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
-<span class="w">  </span><span class="nt">hooks</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tidy-cli</span>
-<span class="w">      </span><span class="nt">entry</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tidy-cli lint run --fix</span>
-</code></pre></div></p>
-<h3 id="vs-all-in-one-tools"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5"/></svg></span> vs. All-in-One Tools</h3>
-<p>Some tools attempt to replace multiple quality tools:</p>
-<p><strong>Tidy CLI philosophy:</strong>
-- <strong>Best-of-breed</strong>: Use the best tool for each job
-- <strong>Flexibility</strong>: Swap tools as ecosystem evolves
-- <strong>Transparency</strong>: Clear understanding of what runs</p>
-<h2 id="performance-considerations"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 22-3.86-1.55c.7-1.53 1.2-3.11 1.51-4.72zM7.86 20.45 4 22l2.35-6.27c.31 1.61.81 3.19 1.51 4.72M12 2s5 2 5 10c0 3.1-.75 5.75-1.67 7.83A2 2 0 0 1 13.5 21h-3a2 2 0 0 1-1.83-1.17C7.76 17.75 7 15.1 7 12c0-8 5-10 5-10m0 10c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2"/></svg></span> Performance Considerations</h2>
-<h3 id="execution-speed"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a3 3 0 0 1-3-3c0-1.12.61-2.1 1.5-2.61l9.71-5.62-5.53 9.58c-.5.98-1.51 1.65-2.68 1.65m0-13c1.81 0 3.5.5 4.97 1.32l-2.1 1.21C14 5.19 13 5 12 5a8 8 0 0 0-8 8c0 2.21.89 4.21 2.34 5.65h.01c.39.39.39 1.02 0 1.41s-1.03.39-1.42.01A9.97 9.97 0 0 1 2 13 10 10 0 0 1 12 3m10 10c0 2.76-1.12 5.26-2.93 7.07-.39.38-1.02.38-1.41-.01a.996.996 0 0 1 0-1.41A7.95 7.95 0 0 0 20 13c0-1-.19-2-.54-2.9L20.67 8C21.5 9.5 22 11.18 22 13"/></svg></span> Execution Speed</h3>
-<p>Tidy CLI optimizes for developer productivity:</p>
-<ul>
-<li><strong>Parallel execution</strong>: Tools run concurrently when possible</li>
-<li><strong>Smart caching</strong>: Leverages individual tool caching</li>
-<li><strong>Incremental runs</strong>: Only processes changed files when supported</li>
-</ul>
-<h3 id="resource-usage"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 17H7V7h10m4 4V9h-2V7a2 2 0 0 0-2-2h-2V3h-2v2h-2V3H9v2H7c-1.11 0-2 .89-2 2v2H3v2h2v2H3v2h2v2a2 2 0 0 0 2 2h2v2h2v-2h2v2h2v-2h2a2 2 0 0 0 2-2v-2h2v-2h-2v-2m-6 2h-2v-2h2m2-2H9v6h6z"/></svg></span> Resource Usage</h3>
-<p>Resource consumption is managed through:</p>
-<ul>
-<li><strong>Tool selection</strong>: Choosing performant underlying tools</li>
-<li><strong>Process management</strong>: Efficient subprocess handling  </li>
-<li><strong>Memory awareness</strong>: Avoiding unnecessary data duplication</li>
-</ul>
-<h2 id="future-directions"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 5v14l7-7m7-7v14h2V5m-9 0v14l7-7"/></svg></span> Future Directions</h2>
-<h3 id="extensibility"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></span> Extensibility</h3>
-<p>Future versions may support:</p>
-<ul>
-<li><strong>Plugin system</strong>: Custom tool integration</li>
-<li><strong>Configuration profiles</strong>: Environment-specific settings</li>
-<li><strong>Advanced workflows</strong>: Complex execution patterns</li>
-</ul>
-<h3 id="community"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg></span> Community</h3>
-<p>Tidy CLI aims to:</p>
-<ul>
-<li><strong>Gather feedback</strong>: Learn from real-world usage</li>
-<li><strong>Evolve standards</strong>: Adapt to Python ecosystem changes</li>
-<li><strong>Maintain simplicity</strong>: Resist feature creep while adding value</li>
-</ul>
-<p>The tool's success depends on balancing power with simplicity, ensuring it remains approachable for new developers while providing value for experienced teams.</p>
 
 
 

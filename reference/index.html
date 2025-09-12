@@ -456,48 +456,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Main Commands">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tidy-cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      tidy-cli
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tidy-cli-version" class="md-nav__link">
-    <span class="md-ellipsis">
-      tidy-cli version
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tidy-cli-init" class="md-nav__link">
-    <span class="md-ellipsis">
-      tidy-cli init
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tidy-cli-install-completion" class="md-nav__link">
-    <span class="md-ellipsis">
-      tidy-cli --install-completion
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -591,13 +549,13 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tool-configuration" class="md-nav__link">
+  <a href="#tool-configuration-example" class="md-nav__link">
     <span class="md-ellipsis">
-      Tool Configuration
+      Tool Configuration Example
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Tool Configuration">
+    <nav class="md-nav" aria-label="Tool Configuration Example">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -659,15 +617,6 @@
   <a href="#file-structure" class="md-nav__link">
     <span class="md-ellipsis">
       File Structure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#environment-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Environment Variables
     </span>
   </a>
   
@@ -759,28 +708,36 @@
 <p>Complete command and configuration reference for Tidy CLI.</p>
 <h2 id="commands"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12zm0-16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-7 14v-2h5v2zm-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59z"/></svg></span> Commands</h2>
 <h3 id="main-commands">Main Commands</h3>
-<h4 id="tidy-cli"><code>tidy-cli</code></h4>
-<p>Display help and available commands.</p>
-<div class="highlight"><pre><span></span><code>tidy-cli
-tidy-cli<span class="w"> </span>--help
-</code></pre></div>
-<h4 id="tidy-cli-version"><code>tidy-cli version</code></h4>
-<p>Show the current version of Tidy CLI.</p>
-<div class="highlight"><pre><span></span><code>tidy-cli<span class="w"> </span>version
-</code></pre></div>
-<h4 id="tidy-cli-init"><code>tidy-cli init</code></h4>
-<p>Initialize Tidy CLI settings for your project.</p>
-<div class="highlight"><pre><span></span><code>tidy-cli<span class="w"> </span>init
-</code></pre></div>
-<p><strong>Interactive prompts:</strong>
-- Pytest folder path
-- Pyproject.toml location relative to pytest folder
-- Default lint path
-- Config path relative to current directory</p>
-<h4 id="tidy-cli-install-completion"><code>tidy-cli --install-completion</code></h4>
-<p>Install shell completion for easier command usage.</p>
-<div class="highlight"><pre><span></span><code>tidy-cli<span class="w"> </span>--install-completion
-</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tidy-cli</code></td>
+<td>Display help and available commands</td>
+</tr>
+<tr>
+<td><code>tidy-cli version</code></td>
+<td>Show current version</td>
+</tr>
+<tr>
+<td><code>tidy-cli init</code></td>
+<td>Initialize project settings (interactive)</td>
+</tr>
+<tr>
+<td><code>tidy-cli --install-completion</code></td>
+<td>Install shell completion</td>
+</tr>
+<tr>
+<td><code>tidy-cli --help</code></td>
+<td>Show help about commands (available for each subcommand <code>pytest</code> and <code>lint</code>)</td>
+</tr>
+</tbody>
+</table>
 <h3 id="lint-commands"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.6 16.6 4.6-4.6-4.6-4.6L16 6l6 6-6 6zm-5.2 0L4.8 12l4.6-4.6L8 6l-6 6 6 6z"/></svg></span> Lint Commands</h3>
 <h4 id="tidy-cli-lint-run"><code>tidy-cli lint run</code></h4>
 <p>Run all linting tools (ruff, mypy, pydoclint).</p>
@@ -791,24 +748,12 @@ tidy-cli<span class="w"> </span>--help
 <p><strong>Options:</strong>
 - <code>--fix</code>: Auto-fix issues where possible
 - <code>--interactive</code>: Prompt before running each tool
+- <code>--skip-ruff</code>: Skip Ruff linting
+- <code>--skip-format</code>: Skip Ruff formatting
 - <code>--skip-mypy</code>: Skip MyPy type checking
-- <code>--skip-pydoclint</code>: Skip Pydoclint docstring checking</p>
-<p><strong>Examples:</strong>
-<div class="highlight"><pre><span></span><code><span class="c1"># Lint default path</span>
-tidy-cli<span class="w"> </span>lint<span class="w"> </span>run
-
-<span class="c1"># Lint specific file</span>
-tidy-cli<span class="w"> </span>lint<span class="w"> </span>run<span class="w"> </span>src/my_module.py
-
-<span class="c1"># Auto-fix issues</span>
-tidy-cli<span class="w"> </span>lint<span class="w"> </span>run<span class="w"> </span>--fix
-
-<span class="c1"># Interactive mode</span>
-tidy-cli<span class="w"> </span>lint<span class="w"> </span>run<span class="w"> </span>--interactive
-
-<span class="c1"># Skip specific tools</span>
-tidy-cli<span class="w"> </span>lint<span class="w"> </span>run<span class="w"> </span>--skip-mypy<span class="w"> </span>--skip-pydoclint
-</code></pre></div></p>
+- <code>--skip-pydoclint</code>: Skip Pydoclint docstring checking
+- <code>--default-dir</code>: Override the default lint directory at runtime
+- <code>--pyproject-path</code>: Override the pyproject.toml path at runtime (relative to current working directory)</p>
 <h4 id="tidy-cli-lint-init"><code>tidy-cli lint init</code></h4>
 <p>Initialize lint-specific settings.</p>
 <div class="highlight"><pre><span></span><code>tidy-cli<span class="w"> </span>lint<span class="w"> </span>init
@@ -821,17 +766,10 @@ tidy-cli<span class="w"> </span>lint<span class="w"> </span>run<span class="w"> 
 <p><strong>Arguments:</strong>
 - <code>PATH</code> (optional): Specific test file or directory. Defaults to configured pytest path.</p>
 <p><strong>Options:</strong>
-- <code>--logs</code>: Show detailed test output (only available when PATH is specified)</p>
-<p><strong>Examples:</strong>
-<div class="highlight"><pre><span></span><code><span class="c1"># Run all tests</span>
-tidy-cli<span class="w"> </span>pytest<span class="w"> </span>run
-
-<span class="c1"># Run specific test file</span>
-tidy-cli<span class="w"> </span>pytest<span class="w"> </span>run<span class="w"> </span>tests/test_example.py
-
-<span class="c1"># Run with detailed logs</span>
-tidy-cli<span class="w"> </span>pytest<span class="w"> </span>run<span class="w"> </span>tests/test_example.py<span class="w"> </span>--logs
-</code></pre></div></p>
+- <code>--logs</code>, <code>-l</code>: Show detailed test output (only available when PATH is specified)
+- <code>--extra</code>, <code>-e</code>: Pass additional pytest options (can be used multiple times)
+- <code>--default-dir</code>: Override the default test directory at runtime
+- <code>--pyproject-path</code>: Override the pyproject.toml path at runtime (relative to default directory)</p>
 <h4 id="tidy-cli-pytest-init"><code>tidy-cli pytest init</code></h4>
 <p>Initialize pytest-specific settings.</p>
 <div class="highlight"><pre><span></span><code>tidy-cli<span class="w"> </span>pytest<span class="w"> </span>init
@@ -878,92 +816,51 @@ tidy-cli<span class="w"> </span>pytest<span class="w"> </span>run<span class="w"
 </tr>
 </tbody>
 </table>
-<h3 id="tool-configuration">Tool Configuration</h3>
-<p>Configure underlying tools in <code>pyproject.toml</code>:</p>
+<h3 id="tool-configuration-example">Tool Configuration Example</h3>
+<p>Configure underlying tools in <code>pyproject.toml</code> (the below are just examples, so <strong>amend</strong> them based on <strong>your project</strong>):</p>
 <h4 id="ruff-configuration"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 15H6l7-14v8h5l-7 14z"/></svg></span> Ruff Configuration</h4>
 <div class="highlight"><pre><span></span><code><span class="k">[tool.ruff]</span>
-<span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">88</span>
 <span class="n">target-version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;py310&quot;</span>
+<span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">175</span>
 
 <span class="k">[tool.ruff.lint]</span>
 <span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="w">    </span><span class="c1"># pycodestyle errors</span>
-<span class="w">    </span><span class="s2">&quot;W&quot;</span><span class="p">,</span><span class="w">    </span><span class="c1"># pycodestyle warnings</span>
-<span class="w">    </span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="w">    </span><span class="c1"># pyflakes</span>
-<span class="w">    </span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="w">    </span><span class="c1"># isort</span>
-<span class="w">    </span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="w">    </span><span class="c1"># pep8-naming</span>
-<span class="w">    </span><span class="s2">&quot;D&quot;</span><span class="p">,</span><span class="w">    </span><span class="c1"># pydocstyle</span>
-<span class="w">    </span><span class="s2">&quot;C90&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># mccabe complexity</span>
+<span class="w">    </span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># pycodestyle errors</span>
+<span class="w">    </span><span class="s2">&quot;W&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># pycodestyle warnings</span>
+<span class="w">    </span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># pyflakes</span>
+<span class="w">    </span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># isort</span>
+<span class="w">    </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># flake8-bugbear</span>
+<span class="w">    </span><span class="s2">&quot;C4&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># flake8-comprehensions</span>
+<span class="w">    </span><span class="s2">&quot;UP&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># pyupgrade</span>
 <span class="p">]</span>
-<span class="n">ignore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;D100&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;D104&quot;</span><span class="p">]</span>
-
-<span class="k">[tool.ruff.lint.pydocstyle]</span>
-<span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sphinx&quot;</span>
-
-<span class="k">[tool.ruff.format]</span>
-<span class="n">quote-style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;double&quot;</span>
-<span class="n">indent-style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;space&quot;</span>
+<span class="n">ignore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;B008&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># do not perform function calls in argument defaults</span>
+<span class="p">]</span>
 </code></pre></div>
 <h4 id="mypy-configuration"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m22.61 19-9.08-9.09c.93-2.34.47-5.1-1.44-7C9.79.61 6.21.4 3.66 2.26L7.5 6.11 6.08 7.5 2.25 3.69C.39 6.23.6 9.82 2.9 12.11c1.86 1.86 4.57 2.35 6.89 1.48l9.11 9.11c.39.39 1.02.39 1.41 0l2.3-2.3c.39-.4.39-1.01 0-1.4m-3 1.59-9.46-9.46c-.61.45-1.29.72-2 .82-1.36.2-2.79-.21-3.83-1.25C3.37 9.76 2.93 8.5 3 7.26l3.09 3.09 4.24-4.24L7.24 3c1.26-.05 2.49.39 3.44 1.33a4.47 4.47 0 0 1 1.24 3.96 4.35 4.35 0 0 1-.88 1.96l9.46 9.45z"/></svg></span> MyPy Configuration</h4>
 <div class="highlight"><pre><span></span><code><span class="k">[tool.mypy]</span>
 <span class="n">python_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.10&quot;</span>
 <span class="n">warn_return_any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="n">warn_unused_configs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="n">disallow_untyped_defs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="n">disallow_incomplete_defs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="n">check_untyped_defs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="n">disallow_untyped_decorators</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="n">no_implicit_optional</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="n">warn_redundant_casts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="n">warn_unused_ignores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="n">warn_no_return</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="n">warn_unreachable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="n">strict_equality</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="n">ignore_missing_imports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 <h4 id="pydoclint-configuration"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 17H7v-2h7m3-2H7v-2h10m0-2H7V7h10m2-4H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"/></svg></span> Pydoclint Configuration</h4>
 <div class="highlight"><pre><span></span><code><span class="k">[tool.pydoclint]</span>
 <span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sphinx&quot;</span>
-<span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;tests/&quot;</span>
-<span class="n">require-return-section-when-returning-nothing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="n">arg-type-hints-in-docstring</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="n">arg-type-hints-in-signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="n">check-arg-order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 <h4 id="pytest-configuration"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 2v2h1v14a4 4 0 0 0 4 4 4 4 0 0 0 4-4V4h1V2zm4 14c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1m2-4c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1m1-5h-4V4h4z"/></svg></span> Pytest Configuration</h4>
 <div class="highlight"><pre><span></span><code><span class="k">[tool.pytest.ini_options]</span>
-<span class="n">testpaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tests&quot;</span><span class="p">]</span>
 <span class="n">python_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;test_*.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;*_test.py&quot;</span><span class="p">]</span>
 <span class="n">python_classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Test*&quot;</span><span class="p">]</span>
 <span class="n">python_functions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;test_*&quot;</span><span class="p">]</span>
-<span class="n">addopts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;--strict-markers&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;--strict-config&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;--verbose&quot;</span><span class="p">,</span>
-<span class="p">]</span>
 
 <span class="k">[tool.coverage.run]</span>
-<span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span>
-<span class="n">branch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="n">omit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="s2">&quot;tests/*&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;*/migrations/*&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;venv/*&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;.venv/*&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;**/__init__.py&quot;</span><span class="p">,</span>
 <span class="p">]</span>
-
-<span class="k">[tool.coverage.report]</span>
-<span class="n">exclude_lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;pragma: no cover&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;def __repr__&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;if self.debug:&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;if settings.DEBUG&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;raise AssertionError&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;raise NotImplementedError&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;if 0:&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;if __name__ == .__main__.:&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;class .*</span><span class="se">\\</span><span class="s2">bProtocol</span><span class="se">\\</span><span class="s2">):&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;@(abc</span><span class="se">\\</span><span class="s2">.)?abstractmethod&quot;</span><span class="p">,</span>
-<span class="p">]</span>
-<span class="n">show_missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="n">precision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
 </code></pre></div>
 <h2 id="exit-codes"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.11 0-2 .89-2 2v4h2V5h14v14H5v-4H3v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-8.92 12.58L11.5 17l5-5-5-5-1.42 1.41L12.67 11H3v2h9.67z"/></svg></span> Exit Codes</h2>
 <table>
@@ -985,7 +882,7 @@ tidy-cli<span class="w"> </span>pytest<span class="w"> </span>run<span class="w"
 </tbody>
 </table>
 <h2 id="file-structure"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 4H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z"/></svg></span> File Structure</h2>
-<p>Expected project structure for optimal Tidy CLI usage:</p>
+<p>Expected project structure for default Tidy CLI usage (default paths can be confifured as shown above):</p>
 <div class="highlight"><pre><span></span><code>project/
 ├── src/                    # Source code (lint_default_path)
 │   └── my_package/
@@ -999,28 +896,6 @@ tidy-cli<span class="w"> </span>pytest<span class="w"> </span>run<span class="w"
 ├── pyproject.toml          # Tool configurations
 └── README.md
 </code></pre></div>
-<h2 id="environment-variables"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 19h3v3h-3zm2-17c5.35.22 7.68 5.62 4.5 9.67-.83 1-2.17 1.66-2.83 2.5C13 15 13 16 13 17h-3c0-1.67 0-3.08.67-4.08.66-1 2-1.59 2.83-2.25C15.92 8.43 15.32 5.26 12 5a3 3 0 0 0-3 3H6a6 6 0 0 1 6-6"/></svg></span> Environment Variables</h2>
-<table>
-<thead>
-<tr>
-<th>Variable</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>TIDY_CLI_CONFIG_PATH</code></td>
-<td>Override config file location</td>
-<td><code>local/tidy_cli_settings.json</code></td>
-</tr>
-<tr>
-<td><code>TIDY_CLI_VERBOSE</code></td>
-<td>Enable verbose output</td>
-<td><code>false</code></td>
-</tr>
-</tbody>
-</table>
 <h2 id="integration-examples"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg></span> Integration Examples</h2>
 <h3 id="github-actions">GitHub Actions</h3>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Code Quality</span>
