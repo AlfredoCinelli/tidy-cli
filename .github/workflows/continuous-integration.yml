@@ -18,9 +18,9 @@ on:
 
 # Jobs definition
 jobs:
-  run-test:
+  run-test-matrix:
     runs-on: ${{ matrix.os }} # allows different test scenarios
-    name: run-test on Python ${{ matrix.python-version }} for ${{ matrix.os }} # specify name with OS and Python version
+    name: Run test on Python ${{ matrix.python-version }} for ${{ matrix.os }} # specify name with OS and Python version
     strategy:
       fail-fast: false # combinations run independently of others success or failure
       matrix:
