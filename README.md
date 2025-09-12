@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🧹 Tidy CLI ✨</h1>
+  <img src="docs/logo.jpeg" alt="Tidy CLI Logo" width="200">
   <p><em>Keep your code clean and robust!</em></p>
 </div>
 
@@ -24,13 +24,18 @@
 
 [![Mac OS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white)]()
 [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)]()
-[![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)]()
+[![Windows WSL](https://img.shields.io/badge/Windows%20WSL-0078D6?style=for-the-badge&logo=windows&logoColor=white)]()
 
 </div>
 
 ---
 
 **Tidy CLI** simplifies your development process by combining essential tools like ruff, mypy, pydoclint, and pytest into a single, easy-to-use command-line interface. Perfect for maintaining code quality and running tests across Python projects of any size.
+
+## 📚 Documentation
+
+For a detailed documenation, please visit this [link]("https://alfredocinelli.github.io/tidy-cli/").
+But if you are rushing, just keep reading this short overview!
 
 ## ✨ Key Features
 
@@ -63,7 +68,9 @@ uv add tidy-cli
 ### Requirements
 
 - Python 3.10+
-- Works on Linux, macOS, and Windows
+- Works on Linux, macOS, and Windows (WSL only)
+
+> **Note**: On Windows, tidy-cli requires WSL (Windows Subsystem for Linux) for proper Unicode and terminal support. Native Windows is not currently supported.
 
 ## 🏃 Quick Start
 
@@ -134,6 +141,10 @@ tidy-cli lint run --fix
 # Skip specific linters
 tidy-cli lint run --skip-mypy
 tidy-cli lint run --skip-pydoclint
+
+# Override default directory and config at runtime
+tidy-cli lint run --default-dir custom_src
+tidy-cli lint run --pyproject-path custom/pyproject.toml
 ```
 
 ### Testing Commands
@@ -147,6 +158,14 @@ tidy-cli pytest run tests/test_example.py
 
 # Show detailed test output on a path (logs can be displayed only on path runs)
 tidy-cli pytest run tests/test_example.py --logs
+
+# Pass extra pytest options (with --extra -s or -e -s logs can be displayed at any level)
+tidy-cli pytest run --extra -v --extra -s
+tidy-cli pytest run tests/test_example.py --extra --tb=short
+
+# Override default directory and config at runtime
+tidy-cli pytest run --default-dir custom_tests
+tidy-cli pytest run --pyproject-path custom/pyproject.toml
 ```
 
 ### CLI Configuration
@@ -236,7 +255,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed history of changes.
 ## 🐛 Issues & Support
 
 - **Bug Reports**: [GitHub Issues](https://github.com/AlfredoCinelli/tidy-cli/issues)
-- **Documentation**: [GitHub Wiki](https://github.com/AlfredoCinelli/tidy-cli/wiki)
+- **Documentation**: [Mkdocs Documentation](https://alfredocinelli.github.io/tidy-cli/)
 
 ## 📄 License
 
