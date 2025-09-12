@@ -18,8 +18,14 @@ on:
 
 # Jobs definition
 jobs:
-  run-test:
-    runs-on: ubuntu-latest # VM type
+  run-test-matrix:
+    runs-on: ${{ matrix.os }} # allows different test scenarios
+    name: Run Test on Python ${{ matrix.python-version }} for ${{ matrix.os }} # specify name with OS and Python version
+    strategy:
+      fail-fast: false # combinations run independently of others success or failure
+      matrix:
+        os: [ubuntu-latest, macos-latest] # cross-platform compatibility
+        python-version: ["3.10", "3.11", "3.12"] # multiple Python versions support
 
     steps:
     # Checkout code to download repository into the Runner
@@ -34,11 +40,11 @@ jobs:
       with:
         version: "0.8.14"
 
-  # Install Python via Project toml version
-    - name: Set up Python
+    # Install Python via matrix version
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
-        python-version-file: "pyproject.toml"
+        python-version: ${{ matrix.python-version }} # Python version from matrix
 
   # Install Project dependencies with dev group
     - name: Install the Project
@@ -51,6 +57,7 @@ jobs:
 
   run-linters:
     runs-on: ubuntu-latest # VM type
+    name: Run Linters
 
     steps:
     # Checkout code to download repository into the Runner
@@ -86,7 +93,7 @@ jobs:
 
   version-check:
     runs-on: ubuntu-latest  # VM type
-    if: github.event_name == 'pull_request' # trigger job only on PR event
+    name: Version Check
     
     steps:
     # Checkout code to download repository into the Runner
@@ -111,11 +118,20 @@ jobs:
     - name: Install the Dependencies
       run: uv sync --group dev
 
-  # Check that the version has been properly bumped
-    - name: Check Version Bump
+  # Check that the version has been properly bumped and matches CHANGELOG.md
+    - name: Check Version Bump and Validate
       run: |
         # Get latest version from pyproject.toml on current branch
         CURRENT_VERSION=$(uv run python -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['project']['version'])")
+        
+        # Get latest version from CHANGELOG.md
+        CHANGELOG_VERSION=$(grep -m 1 "^## \[" CHANGELOG.md | sed 's/^## \[\(.*\)\] - .*/\1/')
+        
+        # Validate versions match
+        if [ "$CURRENT_VERSION" != "$CHANGELOG_VERSION" ]; then
+          echo "❌ Version mismatch: pyproject.toml has '$CURRENT_VERSION' but CHANGELOG.md has '$CHANGELOG_VERSION'"
+          exit 1
+        fi
         
         # Get latest version from main branch
         git fetch origin main
@@ -128,5 +144,5 @@ jobs:
           echo "❌ Version not bumped! Please update the version in 'pyproject.toml'"
           exit 1
         else
-          echo "✅ Version bumped from '$MAIN_VERSION' to '$CURRENT_VERSION'"
+          echo "✅ Version bumped from '$MAIN_VERSION' to '$CURRENT_VERSION' and matches CHANGELOG.md"
         fi

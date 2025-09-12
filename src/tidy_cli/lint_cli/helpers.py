@@ -94,6 +94,7 @@ def init_settings() -> None:
     console.print(f"\n✅ Settings saved to [bold]{SETTINGS_FILE}[/bold]", style="white")
     console.print(f"📁 Linter default directory: [bold]{lint_path}[/bold]", style="white")
     console.print(f"📄 Linter config file path: [bold]{config_path}[/bold]", style="white")
+    console.print("🖍️  Linter default directory and config file path can be [bold]overwritten[/bold] at runtime via options", style="white")
 
 
 def get_lint_default_path() -> Path:

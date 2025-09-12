@@ -1,0 +1,49 @@
+site_name: Tidy CLI # name of the site (top left)
+repo_url: https://github.com/AlfredoCinelli/tidy-cli # repo url (at the top right with version and stars)
+repo_name: tidy-cli # name of the repo displayed
+
+theme:
+  name: "material" # use material theme
+  icon:
+    repo: fontawesome/brands/github # github icon for the top right repo
+    logo: material/book-open-page-variant
+  #logo: docs/logo.jpeg # assets/logo.png # add logo at the top left (usually placed under the assets folder) jpeg or png or svg with size and pixel constraints
+  palette: # define different palettes
+    - scheme: default # default palette when landing on the site docs
+      primary: "cyan" # primary color in light theme
+      accent: "light blue" # light blue accent
+      toggle: # define the toggle to switch to the other palette (usually default is light and alternative is dark)
+        icon: material/brightness-7 # type of the icon (stylized sun)
+        name: Switch to dark mode # helpe description when pointing on the toggle
+    - scheme: slate # secondary palette (dark mode)
+      primary: "light green" # primary color in dark mode
+      accent: "light blue" # light blue accent
+      toggle: # define the toggle to swith to the light (default) paletter
+        icon: material/brightness-4 # type of icon (stylized moon)
+        name: Switch to light mode # help description when pointing on the toggle
+  font: # font
+    text: "Roboto" # text font
+    code: "Roboto Mono" # code font
+  features: # naviagtion features
+    - navigation.tabs # top navigation bar
+    - navigation.sections # left side navigation sections
+    - toc.integrate # embed table of contents in left side navigation sections
+    - navigation.footer # enable footer navigation
+
+plugins:
+  - mkdocstrings # allows to use syntax to add documentation from code docstrings (::: path.to.code)
+
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav: # navigation specs (i.e., order of the pages and name)
+  - Tidy CLI Docs: index.md
+  - Tutorials: tutorials.md
+  - How-To Guides: how-to-guides.md
+  - Reference: reference.md
+  - Explanation: explanation.md

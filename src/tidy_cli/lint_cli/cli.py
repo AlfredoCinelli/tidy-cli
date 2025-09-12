@@ -52,6 +52,7 @@ def run(
             "--interactive",
             "-i",
             help="🎛️  Run in [bold]interactive[/bold] mode.",
+            show_default="False",
         ),
     ] = False,
     fix: Annotated[
@@ -60,6 +61,7 @@ def run(
             "--fix",
             "-f",
             help="🩹 Ruff [bold]auto-fix[/bold] issues when possible.",
+            show_default="False",
         ),
     ] = False,
     skip_ruff: Annotated[
@@ -68,6 +70,7 @@ def run(
             "--skip-ruff",
             "-sl",
             help="💨 [bold]Skip[/bold] ruff linting.",
+            show_default="False",
         ),
     ] = False,
     skip_format: Annotated[
@@ -76,6 +79,7 @@ def run(
             "--skip-format",
             "-sf",
             help="💨 [bold]Skip[/bold] ruff formatting.",
+            show_default="False",
         ),
     ] = False,
     skip_pydoclint: Annotated[
@@ -84,6 +88,7 @@ def run(
             "--skip-pydoclint",
             "-sp",
             help="💨 [bold]Skip[/bold] pydoclint.",
+            show_default="False",
         ),
     ] = False,
     skip_mypy: Annotated[
@@ -92,8 +97,23 @@ def run(
             "--skip-mypy",
             "-sm",
             help="💨 [bold]Skip[/bold] mypy.",
+            show_default="False",
         ),
     ] = False,
+    default_dir: Annotated[
+        Path | None,
+        typer.Option(
+            "--default-dir",
+            help="🖍️  Overwrite at [bold]runtime[/bold] the lint [italic]default directory[/italic]",
+        ),
+    ] = None,
+    pyproject_path: Annotated[
+        str | None,
+        typer.Option(
+            "--pyproject-path",
+            help="🖍️  Overwrite at [bold]runtime[/bold] the [italic]pyproject.toml[/italic] path (relative to [italic]current working directory[/italic])",
+        ),
+    ] = None,
 ) -> None:
     """
     Entry point function to run Linters on the entire default folder, 'src' or wath's defined in the settings, or a specific path.
@@ -113,11 +133,15 @@ def run(
     :type skip_pydoclint: bool
     :param skip_mypy: whether to skip Mypy for static type checking, defaults to False
     :type skip_mypy: bool
+    :param default_dir: default lint path that overwrites the one set at init time
+    :type default_dir: Path | None
+    :param pyproject_path: pyproject.toml path relative to current working directory that overwrites the one set at init time
+    :type pyproject_path: str | None
     :return: None
     :rtype: None
     """
 
-    default_dir: Path = get_lint_default_path()
+    default_dir: Path = get_lint_default_path() if default_dir is None else default_dir  # type: ignore
     lint_path = default_dir / path  # type: ignore
     if lint_path.exists() is False:
         console.print(f"❌ Path not found: [bold]{lint_path}[/bold]", style="red")
@@ -136,7 +160,7 @@ def run(
         skip_mypy = not typer.confirm("Do you want to run mypy?")
 
     results = []
-    config_path = get_lint_config_path()
+    config_path = get_lint_config_path() if pyproject_path is None else pyproject_path
 
     if skip_ruff is False:
         cmd = ["ruff", "check", str(lint_path), "--config", config_path]

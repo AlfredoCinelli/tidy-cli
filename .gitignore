@@ -75,4 +75,7 @@ local/
 TECHNICAL_GUIDE.md
 USER_GUIDE.md
 dist
-NOTES.md
+notes/
+
+# MkDocs
+site/

@@ -69,8 +69,8 @@ def test_cleanup_test_cache(
                 "assert_value": 2,
             },
             "rich_print": {
-                "mock_value": {"return_valuer": None},
-                "assert_value": 4,
+                "mock_value": {"return_value": None},
+                "assert_value": 5,
             },
         }
     ]
@@ -84,6 +84,7 @@ def test_init_settings(
         patch("src.tidy_cli.pytest_cli.helpers.update_settings", **scenario.get("update_settings", {}).get("mock_value", {})) as mock_update,
         patch("src.tidy_cli.pytest_cli.helpers.typer.prompt", **scenario.get("prompt", {}).get("mock_value", {})) as mock_prompt,
         patch("src.tidy_cli.pytest_cli.helpers.console.print", **scenario.get("rich_print", {}).get("mock_value", {})) as mock_print,
+        patch("src.tidy_cli.pytest_cli.helpers.SETTINGS_FILE", "test_settings.json"),
     ):
         init_settings()
         # Test calls

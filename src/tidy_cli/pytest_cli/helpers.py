@@ -77,6 +77,7 @@ def init_settings() -> None:
     console.print(f"\n✅ Settings saved to [bold]{SETTINGS_FILE}[/bold]", style="white")
     console.print(f"📁 Pytest default directory: [bold]{test_path}[/bold]", style="white")
     console.print(f"📄 Pytest config file path: [bold]{config_path}[/bold]", style="white")
+    console.print("🖍️  Pytest default directory and config file path can be [bold]overwritten[/bold] at runtime via options", style="white")
 
 
 def get_pytest_default_path() -> Path:
