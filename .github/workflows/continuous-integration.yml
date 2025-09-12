@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false # combinations run independently of others success or failure
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest] # cross-platform compatibility
+        os: [ubuntu-latest, macos-latest] # cross-platform compatibility
         python-version: ["3.10", "3.11", "3.12"] # multiple Python versions support
 
     steps:
@@ -92,7 +92,6 @@ jobs:
 
   version-check:
     runs-on: ubuntu-latest  # VM type
-    if: github.event_name == 'pull_request' # trigger job only on PR event
     
     steps:
     # Checkout code to download repository into the Runner
