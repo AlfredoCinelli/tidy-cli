@@ -65,7 +65,9 @@ def test_run_specific_path_not_found(runner):
         result = runner.invoke(pytest_app, ["run", "nonexistent/path"])
 
         assert result.exit_code == 1
-        mock_print.assert_any_call("❌ Test path not found: [bold]nonexistent/path[/bold]", style="red")
+        # The error message should show the full path (default_dir / path)
+        expected_path = mock_default_dir / "nonexistent/path"
+        mock_print.assert_any_call(f"❌ Test path not found: [bold]{expected_path}[/bold]", style="red")
 
 
 def test_run_specific_path_success(runner):
