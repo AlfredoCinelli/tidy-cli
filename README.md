@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/logo.jpeg" alt="Tidy CLI Logo" width="200">
+  <img src="https://raw.githubusercontent.com/AlfredoCinelli/tidy-cli/main/docs/logo.jpeg" alt="Tidy CLI Logo" width="200">
   <p><em>Keep your code clean and robust!</em></p>
 </div>
 
@@ -34,7 +34,7 @@
 
 ## 📚 Documentation
 
-For a detailed documenation, please visit this [link]("https://alfredocinelli.github.io/tidy-cli/").
+For a detailed documenation, please visit this [link](https://alfredocinelli.github.io/tidy-cli/).
 But if you are rushing, just keep reading this short overview!
 
 ## ✨ Key Features
