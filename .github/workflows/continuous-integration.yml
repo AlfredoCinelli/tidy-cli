@@ -8,12 +8,12 @@ run-name: "🧪 Tests & Linting | ${{ github.event.pull_request.title }} (PR #${
 
 # Trigger event
 on:
-  pull_request: # event types
+  pull_request: # event types
     types:
-      - opened # opening a PR triggers CI
+      - opened # opening a PR triggers CI
       - edited # editing an opened PR triggers CI (e.g., PR title, description, etc.)
       - synchronize # sync an opened PR triggers CI (i.e., new commits to PR branch)
-    branches: # target branchs
+    branches: # target branchs
       - main # CI triggered on PR opened or edited on main branch
 
 # Jobs definition
@@ -22,38 +22,43 @@ jobs:
     runs-on: ${{ matrix.os }} # allows different test scenarios
     name: Run Test on Python ${{ matrix.python-version }} for ${{ matrix.os }} # specify name with OS and Python version
     strategy:
-      fail-fast: false # combinations run independently of others success or failure
+      fail-fast: false # combinations run independently of others success or failure
       matrix:
-        os: [ubuntu-latest, macos-latest] # cross-platform compatibility
-        python-version: ["3.10", "3.11", "3.12"] # multiple Python versions support
+        os: [ubuntu-latest, macos-latest] # cross-platform compatibility
+        python-version: ["3.10", "3.11", "3.12"] # multiple Python versions support
 
     steps:
     # Checkout code to download repository into the Runner
-    - name: Checkout Code
+    - name: 📥 Checkout Code
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
     # Install uv via pinned version
-    - name: Install uv
+    - name: ⚡ Install uv
       uses: astral-sh/setup-uv@v6
       with:
         version: "0.8.14"
 
     # Install Python via matrix version
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: 🐍 Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
-        python-version: ${{ matrix.python-version }} # Python version from matrix
+        python-version: ${{ matrix.python-version }} # Python version from matrix
 
   # Install Project dependencies with dev group
-    - name: Install the Project
+    - name: 📦 Install the Project
       run: |
+        echo "📦 Installing project..."
         uv sync --group dev
         uv pip install -e .
+        echo "✅ Project installation completed"
 
-    - name: Run Unit-Tests with Coverage Report
-      run: uv run coverage run --rcfile=./pyproject.toml -m pytest --disable-pytest-warnings && uv run coverage report && rm -f .coverage
+    - name: 🧪 Run Unit-Tests with Coverage Report
+      run: |
+        echo "🧪 Running unit tests with coverage..."
+        uv run coverage run --rcfile=./pyproject.toml -m pytest --disable-pytest-warnings && uv run coverage report && rm -f .coverage
+        echo "✅ Tests completed successfully"
 
   run-linters:
     runs-on: ubuntu-latest # VM type
@@ -61,35 +66,47 @@ jobs:
 
     steps:
     # Checkout code to download repository into the Runner
-    - name: Checkout Code
+    - name: 📥 Checkout Code
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
     # Install uv via pinned version
-    - name: Install uv
+    - name: ⚡ Install uv
       uses: astral-sh/setup-uv@v6
       with:
         version: "0.8.14"
 
   # Install Python via Project toml version
-    - name: Set up Python
+    - name: 🐍 Set up Python
       uses: actions/setup-python@v5
       with:
         python-version-file: "pyproject.toml"
 
   # Install Project dependencies with dev group
-    - name: Install the Dependencies
-      run: uv sync --group dev
+    - name: 📦 Install the Dependencies
+      run: |
+        echo "📦 Installing dependencies..."
+        uv sync --group dev
+        echo "✅ Dependencies installed"
 
-    - name: Run Linters via Ruff
-      run: uv run ruff check src/tidy_cli --fix
+    - name: 🔨 Run Linters via Ruff
+      run: |
+        echo "🔨 Running linters..."
+        uv run ruff check src/tidy_cli --fix
+        echo "✅ Linting completed"
 
-    - name: Run Formatters via Ruff
-      run: uv run ruff format src/tidy_cli
+    - name: 🎨 Run Formatters via Ruff
+      run: |
+        echo "🎨 Running formatters..."
+        uv run ruff format src/tidy_cli
+        echo "✅ Formatting completed"
 
-    - name: Run Type Checking via MyPy
-      run: uv run mypy src/tidy_cli --pretty
+    - name: 🔍 Run Type Checking via MyPy
+      run: |
+        echo "🔍 Running type checking..."
+        uv run mypy src/tidy_cli --pretty
+        echo "✅ Type checking completed"
 
   version-check:
     runs-on: ubuntu-latest  # VM type
@@ -97,30 +114,34 @@ jobs:
     
     steps:
     # Checkout code to download repository into the Runner
-    - name: Checkout Code
+    - name: 📥 Checkout Code
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
     # Install uv via pinned version
-    - name: Install uv
+    - name: ⚡ Install uv
       uses: astral-sh/setup-uv@v6
       with:
         version: "0.8.14"
 
   # Install Python via Project toml version
-    - name: Set up Python
+    - name: 🐍 Set up Python
       uses: actions/setup-python@v5
       with:
         python-version-file: "pyproject.toml"
 
   # Install Project dependencies with dev group
-    - name: Install the Dependencies
-      run: uv sync --group dev
+    - name: 📦 Install the Dependencies
+      run: |
+        echo "📦 Installing dependencies..."
+        uv sync --group dev
+        echo "✅ Dependencies installed"
 
   # Check that the version has been properly bumped and matches CHANGELOG.md
-    - name: Check Version Bump and Validate
+    - name: 🔢 Check Version Bump and Validate
       run: |
+        echo "🔢 Starting version validation..."
         # Get latest version from pyproject.toml on current branch
         CURRENT_VERSION=$(uv run python -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['project']['version'])")
         

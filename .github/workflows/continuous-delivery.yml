@@ -21,36 +21,45 @@ jobs:
 
     steps:
     # Checkout code to download repository into the Runner
-    - name: Checkout Code
+    - name: 📥 Checkout Code
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
     
     # Install uv via pinned version
-    - name: Install uv
+    - name: ⚡ Install uv
       uses: astral-sh/setup-uv@v6
       with:
         version: "0.8.14"
 
     # Install Python via Project toml version
-    - name: Set up Python
+    - name: 🐍 Set up Python
       uses: actions/setup-python@v5
       with:
         python-version-file: "pyproject.toml"
     
       # Install Project dependencies with dev group
-    - name: Install the Dependencies
-      run: uv sync --group dev
+    - name: 📦 Install the Dependencies
+      run: |
+        echo "📦 Installing dependencies..."
+        uv sync --group dev
+        echo "✅ Dependencies installed"
 
     # Run build with dist check
-    - name: Build Package Distribution
-      run: bash scripts/build.sh
+    - name: 🔨 Build Package Distribution
+      run: |
+        echo "🔨 Building package distribution..."
+        bash scripts/build.sh
+        echo "✅ Package built successfully"
 
-    - name: Publish to PyPI
+    - name: 🚀 Publish to PyPI
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-      run: uv run twine upload dist/*
+      run: |
+        echo "🚀 Publishing to PyPI..."
+        uv run twine upload dist/*
+        echo "✅ Successfully published to PyPI"
 
   # Deploy documentation to GitHub Pages
   deploy-docs:
@@ -61,26 +70,32 @@ jobs:
       contents: write
 
     steps:
-    - name: Checkout Code
+    - name: 📥 Checkout Code
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    - name: Install uv
+    - name: ⚡ Install uv
       uses: astral-sh/setup-uv@v6
       with:
         version: "0.8.14"
 
-    - name: Set up Python
+    - name: 🐍 Set up Python
       uses: actions/setup-python@v5
       with:
         python-version-file: "pyproject.toml"
 
-    - name: Install Dependencies
-      run: uv sync --group dev
+    - name: 📦 Install Dependencies
+      run: |
+        echo "📦 Installing dependencies..."
+        uv sync --group dev
+        echo "✅ Dependencies installed"
 
-    - name: Deploy Documentation
-      run: uv run mkdocs gh-deploy
+    - name: 📚 Deploy Documentation
+      run: |
+        echo "📚 Deploying documentation..."
+        uv run mkdocs gh-deploy
+        echo "✅ Documentation deployed successfully"
 
   # Create GitHub release with tag based on CHANGELOG latest content
   create-release:
@@ -91,14 +106,15 @@ jobs:
       contents: write
 
     steps:
-    - name: Checkout Code
+    - name: 📥 Checkout Code
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    - name: Extract Version and Release Notes
+    - name: 📋 Extract Version and Release Notes
       id: extract
       run: |
+        echo "📋 Extracting version and release notes..."
         # Extract latest version from CHANGELOG.md
         VERSION=$(grep -m 1 "^## \[" CHANGELOG.md | sed 's/^## \[\(.*\)\] - .*/\1/')
         echo "version=$VERSION" >> $GITHUB_OUTPUT
@@ -106,17 +122,20 @@ jobs:
         # Extract release notes for the latest version
         awk '/^## \[/{if(p) exit; p=1; next} p && /^## \[/{exit} p' CHANGELOG.md > release_notes.md
         
-        echo "Release notes for version $VERSION:"
+        echo "📋 Release notes for version $VERSION:"
         cat release_notes.md
+        echo "✅ Version and release notes extracted"
 
-    - name: Create Git Tag
+    - name: 🏷️ Create Git Tag
       run: |
+        echo "🏷️ Creating git tag..."
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
         git tag -a "v${{ steps.extract.outputs.version }}" -m "Release v${{ steps.extract.outputs.version }}"
         git push origin "v${{ steps.extract.outputs.version }}"
+        echo "✅ Git tag v${{ steps.extract.outputs.version }} created"
 
-    - name: Create GitHub Release
+    - name: 🎉 Create and Publish GitHub Release
       uses: softprops/action-gh-release@v2
       with:
         tag_name: "v${{ steps.extract.outputs.version }}"
